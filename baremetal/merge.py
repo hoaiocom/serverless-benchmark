@@ -12,7 +12,7 @@ def merge_sort(arr):
     mid = len(arr) // 2
     # Perform merge_sort recursively on both halves
     left, right = merge_sort(arr[:mid]), merge_sort(arr[mid:])
-    # Merge each side together
+    # Merge each side together 
     return merge(left, right, arr.copy())
 
 
