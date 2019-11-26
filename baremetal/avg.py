@@ -13,8 +13,6 @@ def avg(arr):
     return sum/n
 
 class Avg(Resource):
-    def get(self):
-        return {'hello': 'world'}
     def post(self):
         args = [int(i) for i in str(request.data,'utf-8').split(",")]
         result = avg(args)

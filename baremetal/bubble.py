@@ -20,8 +20,6 @@ def bubbleSort(arr):
     return arr
 
 class BubbleSort(Resource):
-    def get(self):
-        return {'hello': 'world'}
     def post(self):
         args = [int(i) for i in str(request.data,'utf-8').split(",")]
         result = bubbleSort(args)

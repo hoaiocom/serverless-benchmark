@@ -37,8 +37,6 @@ def merge(left, right, merged):
     return merged
 
 class MergeSort(Resource):
-    def get(self):
-        return {'hello': 'world'}
     def post(self):
         args = [int(i) for i in str(request.data,'utf-8').split(",")]
         result = merge_sort(args)
