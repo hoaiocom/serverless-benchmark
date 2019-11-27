@@ -1,0 +1,10 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://192.168.1.9:31112
+functions:
+  mergesort-of:
+    lang: python3-http
+    handler: ./mergesort-of
+    image: itbiboo/mergesort-of:latest
+
