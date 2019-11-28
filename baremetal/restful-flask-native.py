@@ -4,7 +4,14 @@ from flask_restful import Resource, Api
 app = Flask(__name__)
 api = Api(app)
 
-# Main code
+def avg(arr):
+    n = len(arr)
+    sum = 0
+    # Traverse through all array elements
+    for i in range(n):
+        sum = sum + arr[i]
+    return sum/n
+
 def merge_sort(arr):
     # The last array split
     if len(arr) <= 1:
@@ -14,7 +21,6 @@ def merge_sort(arr):
     left, right = merge_sort(arr[:mid]), merge_sort(arr[mid:])
     # Merge each side together 
     return merge(left, right, arr.copy())
-
 
 def merge(left, right, merged):
 
@@ -36,13 +42,42 @@ def merge(left, right, merged):
         merged[left_cursor + right_cursor] = right[right_cursor]
     return merged
 
-class MergeSort(Resource):
+def bubbleSort(arr):
+    n = len(arr)
+ 
+    # Traverse through all array elements
+    for i in range(n):
+ 
+        # Last i elements are already in place
+        for j in range(0, n-i-1):
+            # traverse the array from 0 to n-i-1
+            # Swap if the element found is greater
+            # than the next element
+            if arr[j] > arr[j+1] :
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+    return arr
+
+class Avg(Resource):
+    def post(self):
+        args = [int(i) for i in str(request.data,'utf-8').split(",")]
+        result = avg(args)
+        return jsonify(result)
+
+class Merge(Resource):
     def post(self):
         args = [int(i) for i in str(request.data,'utf-8').split(",")]
         result = merge_sort(args)
         return jsonify(result)
 
-api.add_resource(MergeSort, '/')
+class Bubble(Resource):
+    def post(self):
+        args = [int(i) for i in str(request.data,'utf-8').split(",")]
+        result = bubbleSort(args)
+        return jsonify(result)
+
+api.add_resource(Avg, '/avg')
+api.add_resource(Merge, '/merge')
+api.add_resource(Bubble, '/bubble')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port="3333")
+    app.run(host='0.0.0.0', port="8000")
