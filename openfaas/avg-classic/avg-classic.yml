@@ -1,0 +1,10 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://192.168.1.9:31112
+functions:
+  avg-classic:
+    lang: python3
+    handler: ./avg-classic
+    image: itbiboo/avg-classic:latest
+

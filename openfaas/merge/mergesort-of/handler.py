@@ -28,7 +28,8 @@ def merge(left, right, merged):
 def handle(event, context):
     if event.method == 'POST':
         x = [int(i) for i in str(event.body,'utf-8').split(",")]
+        result = merge_sort(x)
         return {
             "statusCode": 200,
-            "body": merge_sort(x)
+            "body": result
         }
